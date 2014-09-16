@@ -9,13 +9,18 @@ and open the template in the editor.
 */
 
 .page-padding{
-    padding: 10px 20px;
+    padding: 20px;
 }
 
+.header-padding{
+    padding: 10px;
+    margin-bottom: 10px;
+}
+/*
 header{
     border-bottom: 2px #999999 solid;
     box-shadow: rgba(0,0,0,0.2) 0px 2px 3px, inset rgba(0,0,0,0.2) 0px -1px 2px; 
-}
+}*/
 
 .logo{
     width:136px;height:17px
@@ -36,3 +41,7 @@ header{
     }
 }
 
+
+.main-section {
+    padding: 20px;
+}

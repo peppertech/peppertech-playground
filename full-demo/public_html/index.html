@@ -11,52 +11,84 @@ and open the template in the editor.
         <link type="text/css" rel="stylesheet" href="css/overrides.css"/>
     </head>
     <body>
-        <header class="page-padding row">
-            <div class="row small-12">
-                <div class="column small-10 medium-3 logo left">
+        <header class="header-padding row">
+            <!--<div class="row small-12">-->
+            <!--                <div class="column small-10 medium-3 logo left"></div>
+                            <div class="column hidden-for-small-only medium-7 right">menu</div>
+                            <div class="column hidden-for-medium-up off-canvas-wrap right-off-canvas-menu">icon menu</div>-->
+            <div class="off-canvas-wrap" data-offcanvas>
+                <div class="inner-wrap">
+                    <nav class="tab-bar">
+                        <section class="left-small">
+                            <a class="logo" href="http://oracle.com"><span></span></a>
+                        </section>
+
+                        <section class="middle tab-bar-section hidden-for-small-only">
+                            <h1 class="title">Foundation</h1>
+                        </section>
+
+                        <section class="right-small">
+                            <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+                        </section>
+                    </nav>
+                    <aside class="right-off-canvas-menu">
+                        <ul class="off-canvas-list">
+                            <li><label>Users</label></li>
+                            <li><a href="#">Hari Seldon</a></li>
+                            <li><a href="#">More</a></li>
+                            <li><a href="#">More</a></li>
+                            <li><a href="#">More</a></li>
+                        </ul>
+                    </aside>
+
+                    <section class="main-section">        
+                        <div id="mainContainer" class="row small-12" style="display: none">
+                            <section id="dataSection">
+                                <div data-bind="ifnot: showEdit">
+                                    <button id="addBtn" data-bind="click: addRow">Add new row</button>
+                                    <table border="1">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Address</th>
+                                                <th>City</th>
+                                                <th>State</th>
+                                                <th>&nbsp;</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: $root.manufacturers">
+                                            <tr>
+                                                <td data-bind="text: name"/>
+                                                <td data-bind="text: address"/>
+                                                <td data-bind="text: city"/>
+                                                <td data-bind="text: state"/>
+                                                <td><span id="editData" data-bind="click: function(data,event){editVM.openEdit(data,event)}" class="editIcon">Edit</span> : <span id="deleteData" data-bind="click: function(data, event){$root.deleteRow(data,event)}" class="deleteIcon">Delete</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                            <section id="editSection">
+                                <div data-bind="if: dataVM.showEdit">
+                                    <form data-bind="submit: takeAction" style="width: 300px">
+                                        <label for="rowName" style="width:50px; margin-left: 10px; float: left">Name</label><input id="rowName" style="width:150px; padding-left: 5px; text-align: left;" type="text" data-bind="value: name"/><br/>
+                                        <label for="rowAddress" style="width:50px; margin-left: 10px; float: left">Address</label><input id="rowAddress" style="width:150px; padding-left: 5px; text-align: left;" type="text" data-bind="value: address"/><br/>
+                                        <label for="rowCity" style="width:50px; margin-left: 10px; float: left">City</label><input id="rowCity" style="width:150px; padding-left: 5px; text-align: left;" data-bind="value: city"/><br/>
+                                        <label for="rowState" style="width:50px; margin-left: 10px; float: left">State</label><input id="rowState" style="width:150px; padding-left: 5px; text-align: left;" type="text" data-bind="value: state"/><br/>
+                                        <button id="submitBtn" type="submit" style="margin-left: 10px; float: left" data-bind="text: buttonName"></button>
+                                    </form>
+                                </div>
+                            </section>
+                        </div>
+
+                    </section>
+
+                    <a class="exit-off-canvas"></a>
+
                 </div>
-                <div class="column hidden-for-small-only medium-7 right">menu</div>
-                <div class="column hidden-for-medium-up right-off-canvas-menu ">icon menu</div>
-            </div> 
+            </div>
+            <!--</div>--> 
         </header>
-        <div id="mainContainer" class="row small-12" style="display: none">
-            <section id="dataSection">
-                <div data-bind="ifnot: showEdit">
-                    <button id="addBtn" data-bind="click: addRow">Add new row</button>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>City</th>
-                                <th>State</th>
-                                <th>&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: $root.manufacturers">
-                            <tr>
-                                <td data-bind="text: name"/>
-                                <td data-bind="text: address"/>
-                                <td data-bind="text: city"/>
-                                <td data-bind="text: state"/>
-                                <td><span id="editData" data-bind="click: function(data,event){editVM.openEdit(data,event)}" class="editIcon">Edit</span> : <span id="deleteData" data-bind="click: function(data, event){$root.deleteRow(data,event)}" class="deleteIcon">Delete</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            <section id="editSection">
-                <div data-bind="if: dataVM.showEdit">
-                    <form data-bind="submit: takeAction" style="width: 300px">
-                        <label for="rowName" style="width:50px; margin-left: 10px; float: left">Name</label><input id="rowName" style="width:150px; padding-left: 5px; text-align: left;" type="text" data-bind="value: name"/><br/>
-                        <label for="rowAddress" style="width:50px; margin-left: 10px; float: left">Address</label><input id="rowAddress" style="width:150px; padding-left: 5px; text-align: left;" type="text" data-bind="value: address"/><br/>
-                        <label for="rowCity" style="width:50px; margin-left: 10px; float: left">City</label><input id="rowCity" style="width:150px; padding-left: 5px; text-align: left;" data-bind="value: city"/><br/>
-                        <label for="rowState" style="width:50px; margin-left: 10px; float: left">State</label><input id="rowState" style="width:150px; padding-left: 5px; text-align: left;" type="text" data-bind="value: state"/><br/>
-                        <button id="submitBtn" type="submit" style="margin-left: 10px; float: left" data-bind="text: buttonName"></button>
-                    </form>
-                </div>
-            </section>
-        </div>
         <script src="js/libs/knockout/knockout-min.js" type="text/javascript"></script>
         <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
         <script src="js/libs/foundation/foundation.min.js" type="text/javascript"></script>
