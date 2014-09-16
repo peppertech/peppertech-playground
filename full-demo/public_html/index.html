@@ -24,7 +24,7 @@ and open the template in the editor.
                         </section>
 
                         <section class="middle tab-bar-section hidden-for-small-only">
-                            <h1 class="title">Foundation</h1>
+                            <h1 class="title">Manufacturers</h1>
                         </section>
 
                         <section class="right-small">
@@ -62,7 +62,16 @@ and open the template in the editor.
                                                 <td data-bind="text: address"/>
                                                 <td data-bind="text: city"/>
                                                 <td data-bind="text: state"/>
-                                                <td><span id="editData" data-bind="click: function(data,event){editVM.openEdit(data,event)}" class="editIcon">Edit</span> : <span id="deleteData" data-bind="click: function(data, event){$root.deleteRow(data,event)}" class="deleteIcon">Delete</span></td>
+                                                <td>
+                                                    <span id="editData" 
+                                                          data-bind="click: function(data,event){editVM.openEdit(data,event)}" 
+                                                          class="demo-icon-font demo-gear-icon">
+                                                    </span>
+                                                    <span id="deleteData"
+                                                          data-bind="click: function(data, event){$root.deleteRow(data,event)}" 
+                                                          class="demo-icon-font demo-delete-icon">
+                                                    </span>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -70,12 +79,48 @@ and open the template in the editor.
                             </section>
                             <section id="editSection">
                                 <div data-bind="if: dataVM.showEdit">
-                                    <form data-bind="submit: takeAction" style="width: 300px">
-                                        <label for="rowName" style="width:50px; margin-left: 10px; float: left">Name</label><input id="rowName" style="width:150px; padding-left: 5px; text-align: left;" type="text" data-bind="value: name"/><br/>
-                                        <label for="rowAddress" style="width:50px; margin-left: 10px; float: left">Address</label><input id="rowAddress" style="width:150px; padding-left: 5px; text-align: left;" type="text" data-bind="value: address"/><br/>
-                                        <label for="rowCity" style="width:50px; margin-left: 10px; float: left">City</label><input id="rowCity" style="width:150px; padding-left: 5px; text-align: left;" data-bind="value: city"/><br/>
-                                        <label for="rowState" style="width:50px; margin-left: 10px; float: left">State</label><input id="rowState" style="width:150px; padding-left: 5px; text-align: left;" type="text" data-bind="value: state"/><br/>
-                                        <button id="submitBtn" type="submit" style="margin-left: 10px; float: left" data-bind="text: buttonName"></button>
+                                    <form data-bind="submit: takeAction">
+                                        <div class="row">
+                                            <div class="small-8">
+                                                <div class="row">
+                                                    <div class="small-3 column">
+                                                        <label for="rowName" class="right inline">Name</label>
+                                                    </div>
+                                                    <div class="small-9 column">
+                                                        <input id="rowName" type="text" data-bind="value: name"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="small-3 column">
+                                                        <label for="rowAddress" class="right inline">Address</label>
+                                                    </div>
+                                                    <div class="small-9 column">
+                                                        <input id="rowAddress" type="text" data-bind="value: address"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="small-3 column">
+                                                        <label for="rowCity" class="right column">City</label>
+                                                    </div>
+                                                    <div class="small-9 column">
+                                                        <input id="rowCity" type="text" data-bind="value: city"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="small-3 column">
+                                                        <label for="rowState" class="right inline">State</label>
+                                                    </div>
+                                                    <div class="small-9 column">
+                                                        <input id="rowState" type="text" data-bind="value: state"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="small-8">
+                                                <button id="submitBtn" type="submit" class="right" data-bind="text: buttonName"></button>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </section>
