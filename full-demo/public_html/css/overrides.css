@@ -1,0 +1,38 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 14, 2014, 6:48:05 PM
+    Author     : jabrock
+*/
+
+.page-padding{
+    padding: 10px 20px;
+}
+
+header{
+    border-bottom: 2px #999999 solid;
+    box-shadow: rgba(0,0,0,0.2) 0px 2px 3px, inset rgba(0,0,0,0.2) 0px -1px 2px; 
+}
+
+.logo{
+    width:136px;height:17px
+}
+
+.logo:before{
+    content:url("img/oracle_logo_lrg.png");
+    -webkit-transform:translate(-6.96203%, -6.96203%) scale(0.86076);
+    -ms-transform:translate(-6.96203%, -6.96203%) scale(0.86076);
+    transform:translate(-6.96203%, -6.96203%) scale(0.86076)
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx){
+    .logo:before{
+        content:url("img/oracle_logo_lrg_2x.png");
+        -webkit-transform:translate(-28.48101%, -28.48101%) scale(0.43038);
+        -ms-transform:translate(-28.48101%, -28.48101%) scale(0.43038);
+        transform:translate(-28.48101%, -28.48101%) scale(0.43038)
+    }
+}
+
