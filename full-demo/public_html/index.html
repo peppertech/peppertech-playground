@@ -7,15 +7,13 @@ and open the template in the editor.
 <html>
     <head>
         <title>Manufacturer Data</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="css/foundation.css"/>
         <link type="text/css" rel="stylesheet" href="css/overrides.css"/>
     </head>
     <body>
         <header class="header-padding row">
-            <!--<div class="row small-12">-->
-            <!--                <div class="column small-10 medium-3 logo left"></div>
-                            <div class="column hidden-for-small-only medium-7 right">menu</div>
-                            <div class="column hidden-for-medium-up off-canvas-wrap right-off-canvas-menu">icon menu</div>-->
             <div class="off-canvas-wrap" data-offcanvas>
                 <div class="inner-wrap">
                     <nav class="tab-bar">
@@ -49,6 +47,7 @@ and open the template in the editor.
                                     <table border="1">
                                         <thead>
                                             <tr>
+                                                <th>Id</th>
                                                 <th>Name</th>
                                                 <th>Address</th>
                                                 <th>City</th>
@@ -58,6 +57,7 @@ and open the template in the editor.
                                         </thead>
                                         <tbody data-bind="foreach: $root.manufacturers">
                                             <tr>
+                                                <td data-bind="text: id"/>
                                                 <td data-bind="text: name"/>
                                                 <td data-bind="text: address"/>
                                                 <td data-bind="text: city"/>
@@ -82,6 +82,14 @@ and open the template in the editor.
                                     <form data-bind="submit: takeAction">
                                         <div class="row">
                                             <div class="small-8">
+                                                <div class="row" data-bind="visible: editVM.isAdd">
+                                                    <div class="small-3 column">
+                                                        <label for="rowId" class="right inline">Id</label>
+                                                    </div>
+                                                    <div class="small-9 column">
+                                                        <input id="rowId" type="text" data-bind="value: id"/>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="small-3 column">
                                                         <label for="rowName" class="right inline">Name</label>

@@ -15,8 +15,9 @@ MyCustomerViewModel = function () {
     };
 
     self.addRow = function (ev) {
-        self.showEdit(true);
+        editVM.isAdd(true);
         editVM.buttonName('Submit');
+        self.showEdit(true);
     };
 
     self.deleteRow = function (data, ev) {
@@ -29,6 +30,7 @@ MyCustomerViewModel = function () {
 function editViewModel() {
     var self = this;
     self.buttonName = ko.observable('Submit');
+    self.isAdd = ko.observable();
     self.showEdit = dataVM.showEdit();
     self.url = dataVM.serviceURL;
     self.name = ko.observable();
@@ -38,6 +40,7 @@ function editViewModel() {
 
     self.openEdit = function (data) {
         self.buttonName('Update');
+        self.isAdd(false);
         self.id = data.id();
         self.name(data.name());
         self.address(data.address());
@@ -48,31 +51,32 @@ function editViewModel() {
 
     self.editRow = function (form) {
         var url = self.url + "/" + self.id;
-        self.name(form[0].value);
-        self.city(form[1].value);
-        self.state(form[2].value);
-        var jsonData = '[{"customerId":"' + self.id + '","name":"' + self.name() + '","addressline1":"' + self.address() + '","city":"' + self.city() + '","state":"' + self.state() + '"}]';
-        console.log(jsonData);
-        processData("PUT", url, jsonData);
+        self.name(form[1].value);
+        self.address(form[2].value);
+        self.city(form[3].value);
+        self.state(form[4].value);
+        var jsonData = {"zip":"","city":self.city(),"phone":"","name":self.name(),"addressline2":"","addressline1":self.address(),"state":self.state(),"fax":"","rep":"","email":"","manufacturerId":self.id};
+        console.log(JSON.stringify(jsonData));
+        processData("PUT", url, JSON.stringify(jsonData));
     };
 
     self.addRow = function (data) {
-        self.buttonName('Submit');
-        self.id = null;
-        self.name(data[0].value);
-        self.city(data[1].value);
-        self.state(data[2].value);
-        var jsonData = '[{"name":"' + self.name() + '","addressline1":"' + self.address() + '","city":"' + self.city() + '","state":"' + self.state() + '"}]';
-        console.log(jsonData);
-        processData("POST", self.url, jsonData);
+        var id = data[0].value;
+        self.name(data[1].value);
+        self.address(data[2].value);
+        self.city(data[3].value);
+        self.state(data[4].value);
+        var jsonData = {"zip":"","city":self.city(),"phone":"","name":self.name(),"addressline2":"","addressline1":self.address(),"state":self.state(),"fax":"","rep":"","email":"","manufacturerId":id};
+//        var jsonData = '{"name":"' + self.name() + '","addressline1":"' + self.address() + '","city":"' + self.city() + '","state":"' + self.state() + '"}';
+        console.log(JSON.stringify(jsonData));
+        processData("POST", self.url, JSON.stringify(jsonData));
     };
 
     self.takeAction = function (form) {
-        // If we have an existing ID, then treat it as an edit. Otherwise add a new row
-        if (self.id) {
-            self.editRow(form);
-        } else {
+        if (self.isAdd()) {
             self.addRow(form);
+        } else {
+            self.editRow(form);
         }
         dataVM.showEdit(false);
     };
