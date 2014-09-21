@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Manufacture Details</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="css/foundation.css"/>
+        <link type="text/css" rel="stylesheet" href="css/overrides.css"/>
+        
+        <script data-main="js/details" src="js/libs/require.js/require.js"></script>
+    </head>
+    <body>
+        <div id="mainContent" class="row">
+            
+            <input type="text" data-bind="value: address"/>
+            <button data-bind="click: setCenter">Set New Center</button>
+            <!--<button data-bind="click: setCenter">Set New Center</button>-->
+            
+            
+            <div class="column small-12">
+                <div id="map-container" style="width:400px; height: 400px;"></div>
+            </div>
+        </div>
+    </body>

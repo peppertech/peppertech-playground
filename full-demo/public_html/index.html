@@ -11,9 +11,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="css/foundation.css"/>
         <link type="text/css" rel="stylesheet" href="css/overrides.css"/>
+        
+        <script data-main="js/main" src="js/libs/require.js/require.js"></script>
     </head>
     <body>
-        <header class="header-padding row">
+        <div id="global-content">
             <div class="off-canvas-wrap" data-offcanvas>
                 <div class="inner-wrap">
                     <nav class="tab-bar">
@@ -44,7 +46,7 @@ and open the template in the editor.
                             <section id="dataSection">
                                 <div data-bind="ifnot: showEdit">
                                     <button id="addBtn" data-bind="click: addRow">Add Manufacturer</button>
-                                    <table border="1">
+                                    <table>
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
@@ -57,7 +59,7 @@ and open the template in the editor.
                                         </thead>
                                         <tbody data-bind="foreach: $root.manufacturers">
                                             <tr>
-                                                <td data-bind="text: id"/>
+                                                <td><a data-bind="text: id, click:showDetails"></a></td>
                                                 <td data-bind="text: name"/>
                                                 <td data-bind="text: address"/>
                                                 <td data-bind="text: city"/>
@@ -87,7 +89,7 @@ and open the template in the editor.
                                                         <label for="rowId" class="right inline">Id</label>
                                                     </div>
                                                     <div class="small-9 column">
-                                                        <input id="rowId" type="text" data-bind="value: id"/>
+                                                        <input id="rowId" required type="text" data-bind="value: id"/>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -138,10 +140,10 @@ and open the template in the editor.
                     <a class="exit-off-canvas"></a>
                 </div>
             </div>
-        </header>
+        </div>
+<!--        <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
         <script src="js/libs/knockout/knockout-min.js" type="text/javascript"></script>
-        <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
         <script src="js/libs/foundation/foundation.min.js" type="text/javascript"></script>
-        <script src="js/main.js" type="text/javascript"></script>
+        <script src="js/app.js" type="text/javascript"></script>-->
     </body>
 </html>
