@@ -11,19 +11,54 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="css/foundation.css"/>
         <link type="text/css" rel="stylesheet" href="css/overrides.css"/>
-        
+
         <script data-main="js/details" src="js/libs/require.js/require.js"></script>
     </head>
     <body>
-        <div id="mainContent" class="row">
-            
-            <input type="text" data-bind="value: address"/>
-            <button data-bind="click: setCenter">Set New Center</button>
-            <!--<button data-bind="click: setCenter">Set New Center</button>-->
-            
-            
-            <div class="column small-12">
-                <div id="map-container" style="width:400px; height: 400px;"></div>
+        <div id="mainContent" class="row" style="display: none;">
+
+            <div class="row">
+                <div class="column small-12"><h1 class="align-center" data-bind="text: name">Manufacturer Name</h1></div>
             </div>
+            <div class="row">
+                <label class="section-label column small-3">Address</label> 
+            </div>
+            <div class="row">
+                <div class="column small-12 medium-5" data-bind="text:address1">address1</div> 
+            </div>
+            <div class="row">
+                <div class="column small-12 medium-5" data-bind="text:address2">address2</div> 
+            </div>            
+            <div class="row">
+                <div class="column small-12 medium-3"  data-bind="text:city">city</div> 
+                <div class="column small-12 medium-1 "  data-bind="text:state">state</div> 
+                <div class="column small-12 medium-1 pull-7"  data-bind="text:zip">zip</div>
+            </div>
+            <div class="row">
+                <div id="map-container" class="column hidden-for-small-only medium-7" style="width:500px; height: 300px"></div>
+            </div>
+            <div class="row">
+                <label class="section-label column small-12 medium-3" >Contact Info</label> 
+            </div>            
+            <div class="row">
+                <label class="field-label column small-1">Phone:</label>
+                <div class="column small-12 medium-5 pull-6" data-bind="text:phone">phone</div> 
+            </div>
+            <div class="row">
+                <label class="field-label column small-1">Email:</label>
+                <div class="column small-12 medium-5 pull-6" data-bind="text:email">email</div> 
+            </div>
+            <div class="row">
+                <label class="field-label column small-1">Rep:</label>
+                <div class="column small-12 medium-5 pull-6" data-bind="text:rep">representive</div> 
+            </div>
+
+
+
+
+
+
+
+
         </div>
     </body>

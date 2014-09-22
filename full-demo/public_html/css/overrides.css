@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : jabrock
 */
 
+body{
+    font-size: 16px;
+}
+
 .page-padding{
     padding: 20px;
 }
@@ -23,11 +27,12 @@ header{
 }*/
 
 .logo{
-    width:136px;height:17px
+    width:136px;height:17px;
+    padding-top: 5px;
 }
 
 .logo:before{
-    content:url("img/oracle_logo_lrg.png");
+    content:url("img/oracle_logo_sm.png");
     -webkit-transform:translate(-6.96203%, -6.96203%) scale(0.86076);
     -ms-transform:translate(-6.96203%, -6.96203%) scale(0.86076);
     transform:translate(-6.96203%, -6.96203%) scale(0.86076)
@@ -51,61 +56,80 @@ header{
 }
 
 @font-face {
-  font-family: 'AppFont';
-  src: url("fonts/demo.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; 
+    font-family: 'AppFont';
+    src: url("fonts/demo.woff") format("woff");
+    font-weight: normal;
+    font-style: normal; 
 }
 
 .demo-icon-font {
-  font-family: AppFont;
-  font-size: 1.34rem;
-  line-height: 1;
-  display: inline-block;
-  font-weight: normal;
-  speak: none;
-  font-style: normal;
-  font-variant: normal;
-  text-transform: none;
-  text-align: center;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+    font-family: AppFont;
+    font-size: 1.34rem;
+    line-height: 1;
+    display: inline-block;
+    font-weight: normal;
+    speak: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-align: center;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
 .demo-icon-font:before {
-  display: inline-block; }
+    display: inline-block; }
 
 .demo-home-icon:before {
-  content: "\e600"; }
+    content: "\e600"; }
 
 .demo-password-icon:before {
-  content: "\e601"; }
+    content: "\e601"; }
 
 .demo-palette-icon:before {
-  content: "\e602"; }
+    content: "\e602"; }
 
 .demo-library-icon:before {
-  content: "\e603"; }
+    content: "\e603"; }
 
 .demo-chat-icon:before {
-  content: "\e604"; }
+    content: "\e604"; }
 
 .demo-bookmark-icon:before {
-  content: "\e605"; }
+    content: "\e605"; }
 
 .demo-grid-icon:before {
-  content: "\e606"; }
+    content: "\e606"; }
 
 .demo-list-icon:before {
-  content: "\e607"; }
+    content: "\e607"; }
 
 .demo-bulletlist-icon:before {
-  content: "\e608"; }
+    content: "\e608"; }
 
 .demo-gear-icon:before {
-  content: "\e609"; }
+    content: "\e609"; }
 
 .demo-delete-icon {
     content: url("img/delete.jpg")
 }
 
+
+.align-center {
+    text-align: center;
+}
+
+.section-label {
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-bottom: 1px black solid;
+}
+
+.field-label {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+#map-container {
+    margin: 20px 10px;
+}

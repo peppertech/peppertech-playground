@@ -16,11 +16,11 @@ and open the template in the editor.
     </head>
     <body>
         <div id="global-content">
-            <div class="off-canvas-wrap" data-offcanvas>
+            <div class="off-canvas-wrap">
                 <div class="inner-wrap">
                     <nav class="tab-bar">
                         <section class="left-small">
-                            <a class="logo" href="http://oracle.com"><span></span></a>
+                            <a class="logo" href="http://oracle.com"></a>
                         </section>
 
                         <section class="middle tab-bar-section hidden-for-small-only">
@@ -59,7 +59,7 @@ and open the template in the editor.
                                         </thead>
                                         <tbody data-bind="foreach: $root.manufacturers">
                                             <tr>
-                                                <td><a data-bind="text: id, click:showDetails"></a></td>
+                                                <td><a data-bind="text: id, click:$root.showDetails"></a></td>
                                                 <td data-bind="text: name"/>
                                                 <td data-bind="text: address"/>
                                                 <td data-bind="text: city"/>

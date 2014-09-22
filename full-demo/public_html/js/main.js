@@ -49,6 +49,13 @@ require(['knockout', 'jquery', 'foundation'],
                     var url = self.serviceURL + "/" + data.id();
                     processData("DELETE", url);
                 };
+                
+                self.showDetails = function(data, ev){
+                    console.log('show details');
+                    var id = data.id();
+                    window.location.href = "details.html?id="+id;
+                }
+                
             };
 
             function editViewModel() {
@@ -157,7 +164,7 @@ require(['knockout', 'jquery', 'foundation'],
 
                 ko.applyBindings(editVM, document.getElementById('editSection'));
                 ko.applyBindings(dataVM, document.getElementById('dataSection'));
-                //dataVM.loadTable();
+                dataVM.loadTable();
             });
         });
 
