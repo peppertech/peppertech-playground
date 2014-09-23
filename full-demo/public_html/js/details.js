@@ -23,7 +23,7 @@ requirejs.config({
  * by the modules themselves), we are listing them explicitly to get the references to the 'oj' and 'ko'
  * objects in the callback
  */
-require(['knockout', 'jquery', 'async!http://maps.google.com/maps/api/js?sensor=false', 'foundation'],
+require(['knockout', 'jquery', 'foundation'],   //'async!http://maps.google.com/maps/api/js?sensor=false',
         function (ko, $) // this callback gets executed when all required modules are loaded
         {
 
@@ -44,6 +44,7 @@ require(['knockout', 'jquery', 'async!http://maps.google.com/maps/api/js?sensor=
                 }
                 
                 self.serviceHost = window.location.protocol+"//"+window.location.hostname;
+                self.mapAddressURL = ko.observable(); //https://www.google.com/maps/@40.7056308,-73.9780035,10z
                 self.manufacturer = [];
                 self.name = ko.observable();
                 self.address1 = ko.observable();
@@ -57,32 +58,32 @@ require(['knockout', 'jquery', 'async!http://maps.google.com/maps/api/js?sensor=
 
                 self.manuId = self.vars['id'];
                 self.serviceURL = self.serviceHost+":8080/RESTFromSampleDB/webresources/com.mycompany.restfromsampledb.manufacturer/" + self.manuId;
-                self.mapContainer = document.getElementById('map-container');
-
-                var geocoder = new google.maps.Geocoder();
-
-                self.mapAddress = ko.observable('Seattle, WA');
-
-                // Get LatLng information by name
-                self.getLatLong = function () {
-                    geocoder.geocode({
-                        "address": self.mapAddress()
-                    }, function (results, status) {
-                        var map = new google.maps.Map(self.mapContainer, {
-                            center: results[0].geometry.location,
-                            zoom: 10,
-                            mapTypeId: google.maps.MapTypeId.ROADMAP
-                        });
-                    });
-                };
+//                self.mapContainer = document.getElementById('map-container');
+//
+//                //var geocoder = new google.maps.Geocoder();
+//
+                self.mapAddress = ko.observable();
+//
+//                // Get LatLng information by name
+//                self.getLatLong = function () {
+//                    geocoder.geocode({
+//                        "address": self.mapAddress()
+//                    }, function (results, status) {
+//                        var map = new google.maps.Map(self.mapContainer, {
+//                            center: results[0].geometry.location,
+//                            zoom: 10,
+//                            mapTypeId: google.maps.MapTypeId.ROADMAP
+//                        });
+//                    });
+//                };
 
                 self.setCenter = function () {
-                    self.getLatLong();
+                    //self.getLatLong();
                 };
 
                 self.load = function () {
                     processData("GET", self.serviceURL);
-                }
+                };
             }
 
             function processData(method, url) {
@@ -93,7 +94,6 @@ require(['knockout', 'jquery', 'async!http://maps.google.com/maps/api/js?sensor=
                     contentType: 'application/json',
                     dataType: 'json',
                     success: function (data, status, xhr) {
-                        self.data = data;
                         detailsVM.name(data.name);
                         detailsVM.address1(data.addressline1);
                         detailsVM.address2(data.addressline2);
@@ -104,7 +104,6 @@ require(['knockout', 'jquery', 'async!http://maps.google.com/maps/api/js?sensor=
                         detailsVM.email(data.email);
                         detailsVM.rep(data.rep);
                         detailsVM.mapAddress(detailsVM.address1() + ' ' + detailsVM.city() + ', ' + detailsVM.state() + ' ' + detailsVM.zip());
-
                         detailsVM.setCenter();
                         $('#mainContent').show();
                     },
@@ -120,8 +119,8 @@ require(['knockout', 'jquery', 'async!http://maps.google.com/maps/api/js?sensor=
             $(document).ready(function () {
 
                 ko.applyBindings(detailsVM, document.getElementById('mainContent'));
+                $(document).foundation();
                 detailsVM.load();
-
             });
 
         });

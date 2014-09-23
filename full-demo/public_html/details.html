@@ -15,7 +15,7 @@ and open the template in the editor.
         <script data-main="js/details" src="js/libs/require.js/require.js"></script>
     </head>
     <body>
-        <div id="mainContent" class="row" style="display: none;">
+        <div id="mainContent" class="row page-padding" style="display: none;">
 
             <div class="row">
                 <div class="column small-12"><h1 class="align-center" data-bind="text: name">Manufacturer Name</h1></div>
@@ -35,7 +35,8 @@ and open the template in the editor.
                 <div class="column small-12 medium-1 pull-8"  data-bind="text:zip">zip</div>
             </div>
             <div class="row">
-                <div id="map-container" class="column hidden-for-small-only medium-7" style="width:500px; height: 300px"></div>
+                <div data-interchange="[small.html, (small)], [medium.html, (medium)], [medium.html, (large)]"></div>
+                <!--<div id="map-container" class="column hidden-for-small-only medium-7" style="width:500px; height: 300px"></div>-->
             </div>
             <div class="row">
                 <label class="section-label column small-12 medium-3" >Contact Info</label> 
@@ -52,13 +53,5 @@ and open the template in the editor.
                 <label class="field-label column small-1">Rep:</label>
                 <div class="column small-12 medium-5 pull-6" style="padding-top: 5px;" data-bind="text:rep">representive</div> 
             </div>
-
-
-
-
-
-
-
-
         </div>
     </body>

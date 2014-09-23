@@ -165,6 +165,7 @@ require(['knockout', 'jquery', 'foundation'],
 
                 ko.applyBindings(editVM, document.getElementById('editSection'));
                 ko.applyBindings(dataVM, document.getElementById('dataSection'));
+                $(document).foundation();
                 dataVM.loadTable();
             });
         });

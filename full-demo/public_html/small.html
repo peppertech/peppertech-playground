@@ -1,0 +1,31 @@
+<script>
+    require(['jquery', 'knockout'],
+            function ($, ko) {
+
+                $(document).ready(function () {
+                    ko.applyBindings(detailsVM, document.getElementById('map-container'));
+                    var addr = detailsVM.mapAddress();
+                    function test_loop() {
+                        console.log('before timeout');
+                        setTimeout(function () {
+                            addr = detailsVM.mapAddress();
+                            console.log('new addr: '+addr);
+                            detailsVM.mapAddressURL("https://www.google.com/maps/search/"+detailsVM.mapAddress());
+                            if (addr === undefined) {
+                                test_loop();
+                            }
+                        }, 500);
+
+                    }
+                    console.log('addr is: '+ addr);
+                    if (addr === undefined) {
+                        console.log('in undefined');
+                        test_loop();
+                    }
+                    detailsVM.mapAddressURL("https://www.google.com/maps/search/"+detailsVM.mapAddress());
+                });
+            });
+</script>
+<div>
+    <div id="map-container"><a data-bind="attr: { href: mapAddressURL}" target="_blank">View Address in Google Maps</a></div>
+</div>

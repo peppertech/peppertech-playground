@@ -1,0 +1,38 @@
+
+<script>
+    require(['jquery', 'knockout', 'async!http://maps.google.com/maps/api/js?sensor=false'],
+            function ($, ko) {
+                var self = this;
+                self.mapContainer = document.getElementById('map-container');
+
+                self.geocoder = new google.maps.Geocoder();
+
+                self.mapAddress = ko.observable('Seattle, WA');
+ 
+                // Get LatLng information by name
+                self.getLatLong = function () {
+                    self.mapAddress(detailsVM.mapAddress());
+                    geocoder.geocode({
+                        "address": self.mapAddress()
+                    }, function (results, status) {
+                        var map = new google.maps.Map(self.mapContainer, {
+                            center: results[0].geometry.location,
+                            zoom: 10,
+                            width: '500px',
+                            height: '300px',
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        });
+                    });
+                };
+
+                $(document).ready(function () {
+                    ko.applyBindings(detailsVM, document.getElementById('map-container'));
+                    self.getLatLong();
+                });
+            });
+
+</script>
+
+<div>
+    <div id="map-container" class="column small-12 medium-7" style="width:500px; height: 300px"></div>
+</div>
