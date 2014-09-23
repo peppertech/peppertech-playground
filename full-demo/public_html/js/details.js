@@ -42,7 +42,8 @@ require(['knockout', 'jquery', 'async!http://maps.google.com/maps/api/js?sensor=
                         self.vars[hash[0]] = hash[1];
                     }
                 }
-
+                
+                self.serviceHost = window.location.protocol+"//"+window.location.hostname;
                 self.manufacturer = [];
                 self.name = ko.observable();
                 self.address1 = ko.observable();
@@ -55,7 +56,7 @@ require(['knockout', 'jquery', 'async!http://maps.google.com/maps/api/js?sensor=
                 self.rep = ko.observable();
 
                 self.manuId = self.vars['id'];
-                self.serviceURL = "http://localhost:8080/RESTFromSampleDB/webresources/com.mycompany.restfromsampledb.manufacturer/" + self.manuId;
+                self.serviceURL = self.serviceHost+":8080/RESTFromSampleDB/webresources/com.mycompany.restfromsampledb.manufacturer/" + self.manuId;
                 self.mapContainer = document.getElementById('map-container');
 
                 var geocoder = new google.maps.Geocoder();

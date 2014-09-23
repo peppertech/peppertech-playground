@@ -133,3 +133,16 @@ header{
 #map-container {
     margin: 20px 10px;
 }
+
+ #map-container *, #map-container *:before, #map-container *:after {
+        -moz-box-sizing: content-box!important;
+        -webkit-box-sizing: content-box!important;
+        box-sizing: content-box!important;  
+    }
+    #map-container img {
+        max-width: none;
+    }
+    #map-container label {
+        width: auto;
+        display: inline;
+    }

@@ -29,7 +29,8 @@ require(['knockout', 'jquery', 'foundation'],
 
             manfucturerViewModel = function () {
                 var self = this;
-                self.serviceURL = "http://localhost:8080/RESTFromSampleDB/webresources/com.mycompany.restfromsampledb.manufacturer";
+                self.serviceHost = window.location.protocol+"//"+window.location.hostname;
+                self.serviceURL = self.serviceHost+":8080/RESTFromSampleDB/webresources/com.mycompany.restfromsampledb.manufacturer";
                 self.manufacturers = ko.observableArray([]);
                 self.data = [];
                 self.showEdit = ko.observable(false);
