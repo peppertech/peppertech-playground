@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="css/foundation.css"/>
         <link type="text/css" rel="stylesheet" href="css/overrides.css"/>
-        
+
         <script data-main="js/main" src="js/libs/require.js/require.js"></script>
     </head>
     <body>
@@ -19,11 +19,11 @@ and open the template in the editor.
             <div class="off-canvas-wrap">
                 <div class="inner-wrap">
                     <nav class="tab-bar">
-                        <section class="left-small">
+                        <section class="left-small hidden-for-small-only">
                             <a class="logo" href="http://oracle.com"></a>
                         </section>
 
-                        <section class="middle tab-bar-section hidden-for-small-only">
+                        <section class="middle tab-bar-section">
                             <h1 class="title">Manufacturers</h1>
                         </section>
                     </nav>
@@ -37,12 +37,15 @@ and open the template in the editor.
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Name</th>
+                                                <!-- ko ifnot: weAreSmall -->
                                                 <th>Address</th>
                                                 <th>City</th>
                                                 <th>State</th>
+                                                <!-- /ko -->
                                                 <th>&nbsp;</th>
                                             </tr>
                                         </thead>
+                                        <!-- ko ifnot: weAreSmall -->
                                         <tbody data-bind="foreach: $root.manufacturers">
                                             <tr>
                                                 <td><a data-bind="text: id, click:$root.showDetails"></a></td>
@@ -62,6 +65,25 @@ and open the template in the editor.
                                                 </td>
                                             </tr>
                                         </tbody>
+                                        <!-- /ko -->
+                                        <!-- ko if: weAreSmall -->
+                                        <tbody data-bind="foreach: $root.manufacturers">
+                                            <tr>
+                                                <td><a data-bind="text: id, click:$root.showDetails"></a></td>
+                                                <td data-bind="text: name"/>
+                                                <td>
+                                                    <span id="editData" 
+                                                          data-bind="click: function(data,event){editVM.openEdit(data,event)}" 
+                                                          class="demo-icon-font demo-gear-icon">
+                                                    </span>
+                                                    <span id="deleteData"
+                                                          data-bind="click: function(data, event){$root.deleteRow(data,event)}" 
+                                                          class="demo-icon-font demo-delete-icon">
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- /ko -->
                                     </table>
                                 </div>
                             </section>
@@ -127,9 +149,9 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-<!--        <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
-        <script src="js/libs/knockout/knockout-min.js" type="text/javascript"></script>
-        <script src="js/libs/foundation/foundation.min.js" type="text/javascript"></script>
-        <script src="js/app.js" type="text/javascript"></script>-->
+        <!--        <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
+                <script src="js/libs/knockout/knockout-min.js" type="text/javascript"></script>
+                <script src="js/libs/foundation/foundation.min.js" type="text/javascript"></script>
+                <script src="js/app.js" type="text/javascript"></script>-->
     </body>
 </html>

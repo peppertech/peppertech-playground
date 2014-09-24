@@ -3,7 +3,8 @@ requirejs.config({
     paths: {
         'knockout': 'libs/knockout/knockout-min',
         'jquery': 'libs/jquery/jquery',
-        'foundation': 'libs/foundation/foundation.min'
+        'foundation': 'libs/foundation/foundation.min',
+        'response': 'libs/response/response'
     },
     // Shim configurations for modules that do not expose AMD
     shim: {
@@ -11,6 +12,9 @@ requirejs.config({
             exports: ['jQuery', '$']
         },
         'foundation': {
+            deps: ['jquery']
+        },
+        'response': {
             deps: ['jquery']
         }
     }
@@ -23,21 +27,37 @@ requirejs.config({
  * by the modules themselves), we are listing them explicitly to get the references to the 'oj' and 'ko'
  * objects in the callback
  */
-require(['knockout', 'jquery', 'foundation'],
+require(['knockout', 'jquery', 'response', 'foundation'],
         function (ko, $) // this callback gets executed when all required modules are loaded
         {
 
             manfucturerViewModel = function () {
                 var self = this;
-                self.serviceHost = window.location.protocol+"//"+window.location.hostname;
-                self.serviceURL = self.serviceHost+":8080/RESTFromSampleDB/webresources/com.mycompany.restfromsampledb.manufacturer";
+
+                Response.create({
+                    breakpoints: [0, 721, 1025, 1441, 1921]
+                });
+
+                self.serviceHost = window.location.protocol + "//" + window.location.hostname;
+                self.serviceURL = self.serviceHost + ":8080/RESTFromSampleDB/webresources/com.mycompany.restfromsampledb.manufacturer";
                 self.manufacturers = ko.observableArray([]);
                 self.data = [];
                 self.showEdit = ko.observable(false);
+                self.weAreSmall = ko.observable(false);
 
                 self.loadTable = function () {
+                    self.manufacturers([]);
                     processData("GET", self.serviceURL);
                 };
+
+                Response.action(function () {
+                    if (Response.band(0, 721)) {
+                        self.loadTable();
+                        self.weAreSmall(true);
+                    } else {
+                        self.weAreSmall(false);
+                    }
+                });
 
                 self.addRow = function (ev) {
                     editVM.isAdd(true);
@@ -50,13 +70,13 @@ require(['knockout', 'jquery', 'foundation'],
                     var url = self.serviceURL + "/" + data.id();
                     processData("DELETE", url);
                 };
-                
-                self.showDetails = function(data, ev){
+
+                self.showDetails = function (data, ev) {
                     console.log('show details');
                     var id = data.id();
-                    window.location.href = "details.html?id="+id;
+                    window.location.href = "details.html?id=" + id;
                 }
-                
+
             };
 
             function editViewModel() {
@@ -137,14 +157,36 @@ require(['knockout', 'jquery', 'foundation'],
                         }
                         //If we get something back, update the observable that builds the table
                         if (self.data.length > 0) {
+                            
                             $.each(self.data, function () {
-                                dataVM.manufacturers.push({
-                                    id: ko.observable(this.manufacturerId),
-                                    name: ko.observable(this.name),
-                                    address: ko.observable(this.addressline1),
-                                    city: ko.observable(this.city),
-                                    state: ko.observable(this.state)
-                                });
+
+//                                if (dataVM.weAreSmall()) {
+//                                    var dataField = {
+//                                        id: ko.observable(this.manufacturerId),
+//                                        name: ko.observable(this.name)
+//                                    }
+//
+//                                } else {
+                                    var dataField = {
+                                        id: ko.observable(this.manufacturerId),
+                                        name: ko.observable(this.name),
+                                        address: ko.observable(this.addressline1),
+                                        city: ko.observable(this.city),
+                                        state: ko.observable(this.state)
+                                    }
+ //                               }
+                                dataVM.manufacturers.push(dataField);
+                                
+//                                {
+//                                    id: ko.observable(this.manufacturerId),
+//                                    name: ko.observable(this.name),
+//                                    address: ko.observable(this.addressline1),
+//                                    city: ko.observable(this.city),
+//                                    state: ko.observable(this.state)
+//                                }
+                                
+                                
+                                
                             });
                         }
                         dataVM.showEdit(false);

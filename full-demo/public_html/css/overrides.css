@@ -26,10 +26,6 @@ header{
     box-shadow: rgba(0,0,0,0.2) 0px 2px 3px, inset rgba(0,0,0,0.2) 0px -1px 2px; 
 }*/
 
-.logo{
-    width:136px;height:17px;
-    padding-top: 5px;
-}
 
 .logo:before{
     content:url("img/oracle_logo_sm.png");
@@ -39,7 +35,7 @@ header{
 }
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx){
     .logo:before{
-        content:url("img/oracle_logo_lrg_2x.png");
+        content:url("img/oracle_logo_lrg.png");
         -webkit-transform:translate(-28.48101%, -28.48101%) scale(0.43038);
         -ms-transform:translate(-28.48101%, -28.48101%) scale(0.43038);
         transform:translate(-28.48101%, -28.48101%) scale(0.43038)
