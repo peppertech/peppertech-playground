@@ -8,7 +8,7 @@
                     function test_loop() {
                         setTimeout(function () {
                             addr = detailsVM.mapAddress();
-                            detailsVM.mapAddressURL("https://www.google.com/maps/search/"+detailsVM.mapAddress());
+                            detailsVM.mapAddressURL("geo:0,0?q="+encodeURI(detailsVM.mapAddress()));
                             if (addr === undefined) {
                                 test_loop();
                             }
@@ -18,7 +18,7 @@
                     if (addr === undefined) {
                         test_loop();
                     }
-                    detailsVM.mapAddressURL("https://www.google.com/maps/search/"+detailsVM.mapAddress());
+                    detailsVM.mapAddressURL("geo:0,0?q="+encodeURI(detailsVM.mapAddress()));
                 });
             });
 </script>

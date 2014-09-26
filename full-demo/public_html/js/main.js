@@ -52,7 +52,6 @@ require(['knockout', 'jquery', 'response', 'foundation'],
 
                 Response.action(function () {
                     if (Response.band(0, 721)) {
-                        self.loadTable();
                         self.weAreSmall(true);
                     } else {
                         self.weAreSmall(false);
@@ -159,34 +158,13 @@ require(['knockout', 'jquery', 'response', 'foundation'],
                         if (self.data.length > 0) {
                             
                             $.each(self.data, function () {
-
-//                                if (dataVM.weAreSmall()) {
-//                                    var dataField = {
-//                                        id: ko.observable(this.manufacturerId),
-//                                        name: ko.observable(this.name)
-//                                    }
-//
-//                                } else {
-                                    var dataField = {
-                                        id: ko.observable(this.manufacturerId),
-                                        name: ko.observable(this.name),
-                                        address: ko.observable(this.addressline1),
-                                        city: ko.observable(this.city),
-                                        state: ko.observable(this.state)
-                                    }
- //                               }
-                                dataVM.manufacturers.push(dataField);
-                                
-//                                {
-//                                    id: ko.observable(this.manufacturerId),
-//                                    name: ko.observable(this.name),
-//                                    address: ko.observable(this.addressline1),
-//                                    city: ko.observable(this.city),
-//                                    state: ko.observable(this.state)
-//                                }
-                                
-                                
-                                
+                                dataVM.manufacturers.push({
+                                    id: ko.observable(this.manufacturerId),
+                                    name: ko.observable(this.name),
+                                    address: ko.observable(this.addressline1),
+                                    city: ko.observable(this.city),
+                                    state: ko.observable(this.state)
+                                });
                             });
                         }
                         dataVM.showEdit(false);
