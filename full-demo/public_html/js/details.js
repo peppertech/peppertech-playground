@@ -23,7 +23,7 @@ requirejs.config({
  * by the modules themselves), we are listing them explicitly to get the references to the 'oj' and 'ko'
  * objects in the callback
  */
-require(['knockout', 'jquery', 'foundation'],   //'async!http://maps.google.com/maps/api/js?sensor=false',
+require(['knockout', 'jquery', 'foundation'],
         function (ko, $) // this callback gets executed when all required modules are loaded
         {
 
@@ -43,6 +43,8 @@ require(['knockout', 'jquery', 'foundation'],   //'async!http://maps.google.com/
                     }
                 }
                 
+                // The serviceHost variable is being set dynamically to allow for easier testing. 
+                // you will probably want to set this to a static value once you are in production
                 self.serviceHost = window.location.protocol+"//"+window.location.hostname;
                 self.mapAddressURL = ko.observable(); //https://www.google.com/maps/@40.7056308,-73.9780035,10z
                 self.manufacturer = [];
@@ -57,29 +59,11 @@ require(['knockout', 'jquery', 'foundation'],   //'async!http://maps.google.com/
                 self.rep = ko.observable();
 
                 self.manuId = self.vars['id'];
+                
+                // The serviceURL will vary depending on what you named your REST service
+                // If you find you are getting 404 errors returned from your REST calls, this is probably the place to fix it.
                 self.serviceURL = self.serviceHost+":8080/RESTFromSampleDB/webresources/com.mycompany.restfromsampledb.manufacturer/" + self.manuId;
-//                self.mapContainer = document.getElementById('map-container');
-//
-//                //var geocoder = new google.maps.Geocoder();
-//
                 self.mapAddress = ko.observable();
-//
-//                // Get LatLng information by name
-//                self.getLatLong = function () {
-//                    geocoder.geocode({
-//                        "address": self.mapAddress()
-//                    }, function (results, status) {
-//                        var map = new google.maps.Map(self.mapContainer, {
-//                            center: results[0].geometry.location,
-//                            zoom: 10,
-//                            mapTypeId: google.maps.MapTypeId.ROADMAP
-//                        });
-//                    });
-//                };
-
-                self.setCenter = function () {
-                    //self.getLatLong();
-                };
 
                 self.load = function () {
                     processData("GET", self.serviceURL);
@@ -87,7 +71,6 @@ require(['knockout', 'jquery', 'foundation'],   //'async!http://maps.google.com/
             }
 
             function processData(method, url) {
-                var self = this;
                 $.ajax({
                     url: url,
                     type: method,

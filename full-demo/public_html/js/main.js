@@ -37,7 +37,11 @@ require(['knockout', 'jquery', 'response', 'foundation'],
                 Response.create({
                     breakpoints: [0, 721, 1025, 1441, 1921]
                 });
-
+                
+                // The serviceHost variable is being set dynamically to allow for easier testing. 
+                // you will probably want to set this to a static value once you are in production.
+                // The serviceURL will vary depending on what you named your REST service
+                // If you find you are getting 404 errors returned from your REST calls, this is probably the place to fix it.                
                 self.serviceHost = window.location.protocol + "//" + window.location.hostname;
                 self.serviceURL = self.serviceHost + ":8080/RESTFromSampleDB/webresources/com.mycompany.restfromsampledb.manufacturer";
                 self.manufacturers = ko.observableArray([]);
@@ -65,13 +69,11 @@ require(['knockout', 'jquery', 'response', 'foundation'],
                 };
 
                 self.deleteRow = function (data, ev) {
-                    console.log("Delete Clicked");
                     var url = self.serviceURL + "/" + data.id();
                     processData("DELETE", url);
                 };
 
                 self.showDetails = function (data, ev) {
-                    console.log('show details');
                     var id = data.id();
                     window.location.href = "details.html?id=" + id;
                 }
@@ -108,7 +110,6 @@ require(['knockout', 'jquery', 'response', 'foundation'],
                     self.city(form[3].value);
                     self.state(form[4].value);
                     var jsonData = {"zip": "", "city": self.city(), "phone": "", "name": self.name(), "addressline2": "", "addressline1": self.address(), "state": self.state(), "fax": "", "rep": "", "email": "", "manufacturerId": self.id()};
-                    console.log(JSON.stringify(jsonData));
                     processData("PUT", url, JSON.stringify(jsonData));
                 };
 
@@ -119,7 +120,6 @@ require(['knockout', 'jquery', 'response', 'foundation'],
                     self.city(data[3].value);
                     self.state(data[4].value);
                     var jsonData = {"zip": "", "city": self.city(), "phone": "", "name": self.name(), "addressline2": "", "addressline1": self.address(), "state": self.state(), "fax": "", "rep": "", "email": "", "manufacturerId": id};
-                    console.log(JSON.stringify(jsonData));
                     processData("POST", self.url, JSON.stringify(jsonData));
                 };
 
@@ -148,7 +148,8 @@ require(['knockout', 'jquery', 'response', 'foundation'],
 
                         // If we are returning a success, and there is no content, then it's probably a delete method, so just clear and reload the table.
                         if (status === "nocontent") {
-                            //TODO: don't clear and reload. Just remove the record from the observableArray. Currently doing an extra unneeded REST call.
+                            //TODO: don't clear and reload. Just remove the record from the observableArray using Knockout utils. 
+                            //Currently doing an extra unneeded REST call.
                             dataVM.manufacturers([]);
                             dataVM.loadTable();
                             dataVM.showEdit(false);

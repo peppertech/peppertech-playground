@@ -2781,7 +2781,9 @@ meta.foundation-mq-topbar {
         text-align: center !important; }
 
     .small-text-justify {
-        text-align: justify !important; } }
+        text-align: justify !important; }
+    .tab-bar h1, .tab-bar h2, .tab-bar h3, .tab-bar h4 {
+        font-size: 1.5rem; }}
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
     .medium-only-text-left {
         text-align: left !important; }
@@ -2805,7 +2807,9 @@ meta.foundation-mq-topbar {
         text-align: center !important; }
 
     .medium-text-justify {
-        text-align: justify !important; } }
+        text-align: justify !important; } 
+    .tab-bar h1, .tab-bar h2, .tab-bar h3, .tab-bar h4 {
+        font-size: 2.0rem; }}
 @media only screen and (min-width: 64.063em) and (max-width: 90em) {
     .large-only-text-left {
         text-align: left !important; }
@@ -2829,7 +2833,10 @@ meta.foundation-mq-topbar {
         text-align: center !important; }
 
     .large-text-justify {
-        text-align: justify !important; } }
+        text-align: justify !important; } 
+
+    .tab-bar h1, .tab-bar h2, .tab-bar h3, .tab-bar h4 {
+        font-size: 2.75rem; }}
 @media only screen and (min-width: 90.063em) and (max-width: 120em) {
     .xlarge-only-text-left {
         text-align: left !important; }
@@ -4149,7 +4156,7 @@ dialog::backdrop {
     margin: 0; }
 
 .tab-bar h1, .tab-bar h2, .tab-bar h3, .tab-bar h4 {
-    font-size: 1.5rem; }
+    /* font-size: 1.5rem; */ }
 
 .left-small {
     width: 2.8125rem;
